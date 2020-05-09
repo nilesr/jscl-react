@@ -2,6 +2,7 @@
 (jscl:bootstrap)
 
 (jscl:compile-application
-  (list "app/app.lisp")
-  "app.js")
-
+  (list
+    "../jscl-react.lisp"
+    "../demo-app.lisp")
+  "../demo-app.js")
