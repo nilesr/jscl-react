@@ -2,7 +2,7 @@
 
 Here's a quick demo:
 
-![](ss/out.png)
+![](ss/out.gif)
 
 ### Creating React elements
 
