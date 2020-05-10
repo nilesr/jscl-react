@@ -7,6 +7,11 @@ window.lispToJs = function(...args) {
 window.getObj = function(key, obj) {
   return obj[key];
 }
+window.setObj = function(key, val, obj) {
+  var n = Array.isArray(obj) ? [...obj] : {...obj};
+  n[key] = val;
+  return n;
+}
 window.makeComponent = (def, render, ...args) => {
   return (props) => {
     const [state, setState] = React.useState(def);

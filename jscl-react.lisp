@@ -7,6 +7,7 @@
 (defun alert (&rest args) (apply #j:window:alert args))
 (defun object (&rest l) (apply #j:window:lispToJs l)) ; TODO reader macro
 (defun getobj (key obj) (#j:window:getObj key obj))
+(defun setobj (key val obj) (#j:window:setObj key val obj))
 (defun to-list (vec) (loop for item across vec collect item))
 (defun use-state (default) (#j:React:useState default))
 (defun vec-push (vec new-item) (apply #'vector (cons (to-list vec) new-item)))
