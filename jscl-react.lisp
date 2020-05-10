@@ -32,9 +32,7 @@
                                         (funcall rh child rh)))
                                      (t child))))
                                 (t (funcall rh child rh)))))))))
-    `(vector
-      ,@(loop for form in arguments
-              collect (funcall render-help form render-help)))))
+    (funcall render-help arguments render-help)))
 
 (defmacro defcomponent ((name initial-state) args &body body)
   `(defun ,name () (#j:window:makeComponent ,initial-state (lambda ,args ,@body))))

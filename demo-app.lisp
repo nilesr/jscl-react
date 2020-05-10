@@ -4,10 +4,10 @@
   (let ((handler (lambda (&rest whatever)
                    (funcall set-state (1+ state)))))
     (render
-      ("button"
+      "button"
        (object "onClick" handler)
        "Hello, World: "
-       state))))
+       state)))
 
 (defcomponent (todo-list '("" ("Some Items" "Some Items"))) (set-state state props &rest whatever)
   (destructuring-bind
@@ -20,17 +20,17 @@
           (make-deleter (lambda (i)
                  (lambda (evt)
                    (funcall set-state (list temp (remove-at-index i items)))))))
-      (render
+      (render "div" #()
         ("ul"
          #()
          (apply #'vector
                 (loop for item in items
                       for i from 0
                       collect (render
-                                ("li"
+                                "li"
                                  (object "key" i)
                                  ("button" (object "onClick" (funcall make-deleter i) "style" (object "marginRight" "10px")) "x")
-                                 item)))))
+                                 item))))
         ("form"
          (object "onSubmit" add)
          ("input" (object "value" temp "onChange" onchange))
@@ -39,7 +39,8 @@
 (mount
   "root"
   (render
-    ("h1" #() "Hello, World!")
+    "div"
+    #()
     ("div" (object "id" "thing")
       "This is a text node"
       ("br")
