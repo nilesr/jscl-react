@@ -18,4 +18,6 @@ window.makeComponent = (def, render, ...args) => {
     return render(setState, state, props, ...args);
   }
 }
+window.construct = (cls, ...args) => new cls(...args);
+// TODO replace with a better solution
 window.preventDefault = (e) => e.preventDefault();

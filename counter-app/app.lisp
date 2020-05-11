@@ -5,8 +5,6 @@
                                               (object "id" 3 "value" 0)
                                               (object "id" 4 "value" 0))))
               (set-state state props)
-  (#j:console:log "app state:")
-  (#j:console:log state)
   (let* ((counters (getobj "counters" state))
          (totalCounters (length (remove-if (lambda (c) (zerop (getobj "value" c))) counters)))
          (handleIncrement
@@ -36,6 +34,7 @@
                             "onIncrement" handleIncrement
                             "onDecrement" handleDecrement
                             "onDelete" handleDelete
-                            "onRestart" handleRestart))))))
+                            "onRestart" handleRestart))
+        "(this is the lisp version)"))))
 
 (mount "root" (render (app)))

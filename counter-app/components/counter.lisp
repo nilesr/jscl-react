@@ -14,8 +14,6 @@
   (declare (ignore s) (ignore s2))
   (let* ((counter (getobj "counter" props))
          (val (getobj "value" counter)))
-    (#j:console:log counter)
-    (#j:console:log val)
     (render "div" #()
             ("div" (object "className" "row")
              ("div" (object "className" "col-md-1")

@@ -11,6 +11,7 @@
 (defun to-list (vec) (loop for item across vec collect item))
 (defun use-state (default) (#j:React:useState default))
 (defun vec-push (vec new-item) (apply #'vector (cons (to-list vec) new-item)))
+(defun make-component (&rest args) (apply #j:window:makeComponent args))
 
 (defmacro render (&body arguments)
   (let ((render-help
@@ -36,7 +37,9 @@
     (funcall render-help arguments render-help)))
 
 (defmacro defcomponent ((name initial-state) args &body body)
-  `(defun ,name () (#j:window:makeComponent ,initial-state (lambda ,args ,@body))))
+  (let ((s (gensym)))
+    `(let ((,s (make-component ,initial-state (lambda ,args ,@body))))
+       (defun ,name () ,s))))
 
 (defun mount (root-id el)
   (let ((domContainer (get-element-by-id root-id)))
