@@ -4,6 +4,26 @@ Here's a quick demo:
 
 ![](ss/out.gif)
 
+The demo application is available to try out [here](https://niles.xyz/jscl-react-demo)
+
+### Reference app demos
+
+I've recreated two of the official React example applications in `jscl-react` to show it off
+
+#### Emoji Search
+
+Original project: [ahfarmer/emoji-search](https://github.com/ahfarmer/emoji-search), running live [here](https://ahfarmer.github.io/emoji-search)
+
+`jscl-react` version running [here](https://niles.xyz/jscl-react-demo/emoji-search), source code in the [`emoji-search` subdirectory](https://github.com/nilesr/jscl-react/tree/master/emoji-search)
+
+The original project uses `import` on a json file to make the contents of that file available at runtime, embedded in the code via Babel. I do the same, by loading `cl-json` at compile time using quicklisp, and storing the parsed contents of the json file in a variable that is then available at runtime. You can see exactly how I did this in [`emoji-search/filter-emoji.lisp`](https://github.com/nilesr/jscl-react/blob/master/emoji-search/filter-emoji.lisp#L1-L8). Alternative ways to do it could have included loading it into a variable as a string and using the browser's `JSON.parse` at runtime, which would have eliminated the need for quicklisp, or fetching it at runtime using the browser's built-in `fetch` or `XMLHttpRequest`.
+
+#### Counter App
+
+Original project: [arnab-datta/counter-app](https://github.com/arnab-datta/counter-app/), running live [here](https://obscure-waters-60500.herokuapp.com/)
+
+`jscl-react` version running [here](https://niles.xyz/jscl-react-demo/counter-app), source code in the [`counter-app` subdirectory](https://github.com/nilesr/jscl-react/tree/master/counter-app)
+
 ### Creating React elements
 
 The shortcut `react-create-element` is provided for the JavaScript function `React.createElement`. For example:
