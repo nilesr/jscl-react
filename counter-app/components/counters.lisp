@@ -1,11 +1,11 @@
 (defcomponent (counters nil) (s s2 props)
   (declare (ignore s) (ignore s2))
-  (let ((onReset (getobj "onReset" props))
-        (onIncrement (getobj "onIncrement" props))
-        (onDelete (getobj "onDelete" props))
-        (onDecrement (getobj "onDecrement" props))
-        (counters (getobj "counters" props))
-        (onRestart (getobj "onRestart" props)))
+  (obj-destructure props (|onReset|
+                          |onIncrement|
+                          |onDelete|
+                          |onDecrement|
+                          |counters|
+                          |onRestart|)
     (render "div" #()
       ("button" (object "className" "btn btn-success m-2"
                         "onClick" onReset

@@ -9,7 +9,6 @@
 (defun getobj (key obj) (#j:window:getObj key obj))
 (defun setobj (key val obj) (#j:window:setObj key val obj))
 (defun to-list (vec) (loop for item across vec collect item))
-(defun use-state (default) (#j:React:useState default))
 (defun vec-push (vec new-item) (apply #'vector (cons (to-list vec) new-item)))
 (defun make-component (&rest args) (apply #j:window:makeComponent args))
 
@@ -45,5 +44,19 @@
   (let ((domContainer (get-element-by-id root-id)))
     (react-render el domContainer)))
 
-(defun remove-at-index (idx l)
-  (loop for i from 0 for item in l when (not (= i idx)) collect item))
+(defmacro obj-destructure (obj syms &body body)
+  (let ((sym (gensym))
+        (remove-bars (lambda (s)
+                       (if (char= (char s 0) #\|)
+                         (subseq s 1 (1- (length s)))
+                         s))))
+    `(let ((,sym ,obj))
+       (destructuring-bind
+          ,(loop for s in syms
+                 collect (intern (string-upcase (funcall remove-bars (princ-to-string s)))))
+          (list ,@(loop for s in syms
+                        collect `(getobj ,(if (stringp s)
+                                            s
+                                            (funcall remove-bars (princ-to-string s)))
+                                         ,sym)))
+          ,@body))))

@@ -1,5 +1,8 @@
 (#j:console:log "Loading demo-app.lisp...")
 
+(defun remove-at-index (idx l)
+  (loop for i from 0 for item in l when (not (= i idx)) collect item))
+
 (defcomponent (btn 0) (set-state state props)
   (let ((handler (lambda (event)
                    (funcall set-state (1+ state)))))
