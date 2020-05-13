@@ -11,6 +11,7 @@
 (defun to-list (vec) (loop for item across vec collect item))
 (defun vec-push (vec new-item) (apply #'vector (cons (to-list vec) new-item)))
 (defun make-component (&rest args) (apply #j:window:makeComponent args))
+(defun assoc-val (key obj) (cdr (assoc key obj)))
 
 (defmacro render (&body arguments)
   (let ((render-help

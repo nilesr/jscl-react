@@ -24,8 +24,8 @@
                         (lambda (emoji)
                           (or
                             (contains downcased-search-text
-                                      (downcase (cdr (assoc :title emoji))))
+                                      (downcase (assoc-val :title emoji)))
                             (contains search-text
-                                      (cdr (assoc :keywords emoji)))))
+                                      (assoc-val :keywords emoji))))
                         *emoji-list*)
       collect elem)))
