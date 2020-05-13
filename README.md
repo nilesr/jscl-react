@@ -93,7 +93,7 @@ Properties should be passed in the way `React.createElement` expects them, like 
 	"div"
 	#()
 	("h3" #() "Here is my cool button:")
-	((btn) (object "id" "the-button" "class" "pretty-button"))
+	((btn) (object "id" "the-button" "className" "pretty-button"))
 	"Isn't it pretty?"))
 ```
 
